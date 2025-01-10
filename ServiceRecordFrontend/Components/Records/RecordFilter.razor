@@ -1,0 +1,20 @@
+@using ServiceRecordFrontend.Models
+<div>
+    <input @bind="makeInput" placeholder="Make" type="text">
+    <button @onclick="onFilterByMake">Filter</button>
+</div>
+
+@code {
+    [Parameter]
+    public Action<string>? filterByMake { get; set; }
+
+    private string makeInput { get; set; } = string.Empty;
+
+    private void onFilterByMake()
+    {
+        if (filterByMake != null)
+        {
+            filterByMake?.Invoke(makeInput);
+        }
+    }
+}

@@ -1,0 +1,14 @@
+@using ServiceRecordFrontend.Models;
+
+<tr>
+    <td>@record.VIN</td>
+    <td>@record.Make</td>
+    <td>@record.Model</td>
+    <td>@record.Year</td>
+    <td>@record.Owner</td>
+</tr>
+
+@code {
+    [Parameter]
+    public Record? record { get; set; }
+}

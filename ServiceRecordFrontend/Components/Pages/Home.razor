@@ -1,0 +1,21 @@
+﻿@page "/"
+@using ServiceRecordFrontend.Components.Records
+@using ServiceRecordFrontend.Models;
+
+@inject HttpClient HttpClient
+
+<PageTitle>Home</PageTitle>
+
+@* <RecordForm /> *@
+<RecordList @rendermode="InteractiveServer" Records="Records" />
+
+@code {
+    List<Record> Records = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        Records = await HttpClient.GetFromJsonAsync<List<Record>>("records");
+        Console.WriteLine($"Records: {Records}");
+
+    }
+}
