@@ -1,19 +1,65 @@
-<h3>Add Record</h3>
-<div class="d-flex flex-row align-items-center">
-    <div class="d-flex flex-row">
-        <p class="m-0">VIN</p>
-        <input type="text">
+@using ServiceRecordFrontend.Models;
+@rendermode InteractiveServer
+@inject HttpClient HttpClient
+
+<h3>Create Record</h3>
+<EditForm Model="@newRecord" OnSubmit="HandleSubmit" FormName="PostRecordForm"
+    class="d-flex flex-column align-items-start">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="">
+        <label for="vin" class="m-0">VIN</label>
+        <InputText id="vin" @bind-Value="newRecord.VIN" />
     </div>
-    <div class="d-flex flex-row">
-        <p class="m-0">Make</p>
-        <input type="text">
+    <div class="">
+        <label for="make" class="m-0">Make</label>
+        <InputText id="make" @bind-Value="newRecord.Make" />
     </div>
-    <div class="d-flex flex-row">
-        <p class="m-0">Model</p>
-        <input type="text">
+    <div class="">
+        <label for="model" class="m-0">Model</label>
+        <InputText id="model" @bind-Value="newRecord.Model" />
     </div>
-    <div class="d-flex flex-row">
-        <p class="m-0">Year</p>
-        <input type="text">
+    <div class="">
+        <label for="year" class="m-0">Year</label>
+        <InputNumber id="year" @bind-Value="newRecord.Year" />
     </div>
-</div>
+    <div class="">
+        <label for="owner" class="m-0">Owner</label>
+        <InputText id="owner" @bind-Value="newRecord.Owner" />
+    </div>
+    <div class="">
+        <label for="license" class="m-0">License</label>
+        <InputText id="license" @bind-Value="newRecord.License" />
+    </div>
+    <div class="">
+        <label for="mileage" class="m-0">Mileage</label>
+        <InputNumber id="mileage" @bind-Value="newRecord.Mileage" />
+    </div>
+    <div class="">
+        <label for="service" class="m-0">Service</label>
+        <InputText id="service" @bind-Value="newRecord.Service" />
+    </div>
+    <div class="">
+        <label for="charge" class="m-0">Charge</label>
+        <InputNumber id="charge" @bind-Value="newRecord.Charge" />
+    </div>
+    <button type="submit">Submit</button>
+</EditForm>
+
+@code {
+    private Record newRecord = new Record();
+
+    private async Task HandleSubmit()
+    {
+        try
+        {
+            Console.WriteLine($"Make: {newRecord.Make}");
+            await HttpClient.PostAsJsonAsync("Records", newRecord);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Error: {e.Message}");
+        }
+    }
+
+}
