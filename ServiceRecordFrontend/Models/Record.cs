@@ -8,33 +8,33 @@ namespace ServiceRecordFrontend.Models
         public Guid Id { get; set; }
 
         [Required]
-        public required string Owner { get; set; }
+        public string Owner { get; set; }
 
         [Required]
-        public required DateTime Date { get; set; }
+        public DateTime Date { get; set; }
 
         [Required]
-        public required string Make { get; set; }
+        public string Make { get; set; }
 
         [Required]
-        public required string Model { get; set; }
+        public string Model { get; set; }
 
         [Required]
-        public required int Year { get; set; }
+        public int Year { get; set; }
 
         [Required]
-        public required string VIN { get; set; }
+        public string VIN { get; set; }
 
         [Required]
-        public required string License { get; set; }
+        public string License { get; set; }
 
         [Required]
-        public required int Mileage { get; set; }
+        public int Mileage { get; set; }
 
         [Required]
-        public required string Service { get; set; }
+        public string Service { get; set; }
 
         [Required]
-        public required double Charge { get; set; }
+        public double Charge { get; set; }
     }
 }
