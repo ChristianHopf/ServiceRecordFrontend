@@ -7,7 +7,15 @@
 <PageTitle>Home</PageTitle>
 
 @* <RecordForm /> *@
-<RecordList @rendermode="InteractiveServer" Records="Records" />
+<div class="d-flex flex-row justify-content-center gap-4">
+    <section>
+        <RecordList @rendermode="InteractiveServer" Records="Records" />
+    </section>
+    <section>
+        <RecordForm />
+    </section>
+</div>
+
 
 @code {
     List<Record> Records = [];
