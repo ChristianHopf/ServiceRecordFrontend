@@ -23,15 +23,12 @@
     protected override async Task OnInitializedAsync()
     {
         records = await HttpClient.GetFromJsonAsync<List<Record>>("records");
-        Console.WriteLine($"Records: {records}");
 
     }
 
     public async Task refreshRecords()
     {
-        Console.WriteLine($"Refresh");
         await fetchRecords();
-        Console.WriteLine($"Refresh");
         StateHasChanged();
     }
 

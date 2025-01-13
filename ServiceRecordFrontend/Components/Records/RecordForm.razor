@@ -55,10 +55,8 @@
     {
         try
         {
-            Console.WriteLine($"Make: {newRecord.Make}");
             await HttpClient.PostAsJsonAsync("Records", newRecord);
             await OnRecordPosted.InvokeAsync();
-            Console.WriteLine("OnRecordPosted callback invoked");
         }
         catch (Exception e)
         {

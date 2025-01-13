@@ -46,8 +46,6 @@
     public void handleFilterByMake(string make)
     {
         var filtered = Records.Where(record => record.Make == make).ToList();
-        Console.WriteLine($"{filtered}");
-        Console.WriteLine("hi");
         filteredRecords = filtered;
         StateHasChanged();
     }
