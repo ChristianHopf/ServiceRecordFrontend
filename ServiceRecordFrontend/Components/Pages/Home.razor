@@ -9,21 +9,34 @@
 @* <RecordForm /> *@
 <div class="d-flex flex-row justify-content-center gap-4">
     <section>
-        <RecordList @rendermode="InteractiveServer" Records="Records" />
+        <RecordList @rendermode="InteractiveServer" Records="records" />
     </section>
     <section>
-        <RecordForm />
+        <RecordForm OnRecordPosted="refreshRecords" />
     </section>
 </div>
 
 
 @code {
-    List<Record> Records = [];
+    private List<Record> records = [];
 
     protected override async Task OnInitializedAsync()
     {
-        Records = await HttpClient.GetFromJsonAsync<List<Record>>("records");
-        Console.WriteLine($"Records: {Records}");
+        records = await HttpClient.GetFromJsonAsync<List<Record>>("records");
+        Console.WriteLine($"Records: {records}");
 
+    }
+
+    public async Task refreshRecords()
+    {
+        Console.WriteLine($"Refresh");
+        await fetchRecords();
+        Console.WriteLine($"Refresh");
+        StateHasChanged();
+    }
+
+    private async Task fetchRecords()
+    {
+        records = await HttpClient.GetFromJsonAsync<List<Record>>("records");
     }
 }

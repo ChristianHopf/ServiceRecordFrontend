@@ -7,39 +7,39 @@
     class="d-flex flex-column align-items-start">
     <DataAnnotationsValidator />
     <ValidationSummary />
-    <div class="">
+    <div class="d-flex flex-column">
         <label for="vin" class="m-0">VIN</label>
         <InputText id="vin" @bind-Value="newRecord.VIN" />
     </div>
-    <div class="">
+    <div class="d-flex flex-column">
         <label for="make" class="m-0">Make</label>
         <InputText id="make" @bind-Value="newRecord.Make" />
     </div>
-    <div class="">
+    <div class="d-flex flex-column">
         <label for="model" class="m-0">Model</label>
         <InputText id="model" @bind-Value="newRecord.Model" />
     </div>
-    <div class="">
+    <div class="d-flex flex-column">
         <label for="year" class="m-0">Year</label>
         <InputNumber id="year" @bind-Value="newRecord.Year" />
     </div>
-    <div class="">
+    <div class="d-flex flex-column">
         <label for="owner" class="m-0">Owner</label>
         <InputText id="owner" @bind-Value="newRecord.Owner" />
     </div>
-    <div class="">
+    <div class="d-flex flex-column">
         <label for="license" class="m-0">License</label>
         <InputText id="license" @bind-Value="newRecord.License" />
     </div>
-    <div class="">
+    <div class="d-flex flex-column">
         <label for="mileage" class="m-0">Mileage</label>
         <InputNumber id="mileage" @bind-Value="newRecord.Mileage" />
     </div>
-    <div class="">
+    <div class="d-flex flex-column">
         <label for="service" class="m-0">Service</label>
         <InputText id="service" @bind-Value="newRecord.Service" />
     </div>
-    <div class="">
+    <div class="d-flex flex-column">
         <label for="charge" class="m-0">Charge</label>
         <InputNumber id="charge" @bind-Value="newRecord.Charge" />
     </div>
@@ -47,6 +47,8 @@
 </EditForm>
 
 @code {
+    [Parameter]
+    public EventCallback OnRecordPosted { get; set; }
     private Record newRecord = new Record();
 
     private async Task HandleSubmit()
@@ -55,6 +57,8 @@
         {
             Console.WriteLine($"Make: {newRecord.Make}");
             await HttpClient.PostAsJsonAsync("Records", newRecord);
+            await OnRecordPosted.InvokeAsync();
+            Console.WriteLine("OnRecordPosted callback invoked");
         }
         catch (Exception e)
         {
