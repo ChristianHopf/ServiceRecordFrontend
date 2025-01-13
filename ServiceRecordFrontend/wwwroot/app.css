@@ -2,6 +2,17 @@ html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+/* .record-list{
+    table-layout: fixed;
+} */
+ 
+.service-cell{
+    min-width: 20rem;
+    max-width: 20rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 a, .btn-link {
     color: #006bb7;
 }
